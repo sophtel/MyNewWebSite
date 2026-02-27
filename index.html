@@ -20,15 +20,104 @@
       font-family: 'Inter', sans-serif;
       background: radial-gradient(circle at 0% 30%, #9ACEEB, #d3dcff, #ffe2f5);
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 16px;
+      padding-top: 90px; /* Отступ сверху, чтобы контент не прятался под меню */
     }
 
+    /* ФИКСИРОВАННАЯ НАВИГАЦИЯ */
+    .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(255, 210, 90, 0.8);
+  z-index: 1000;
+  text-align: center;
+  padding: 12px 24px;
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* Это важно: имя слева, ссылки справа */
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 30px;
+  padding: 0 24px; /* чтобы на мобильных не прилипало к краям */
+}
+
+.nav-brand {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(145deg, #5555FF, #1E3A8A, #2565ae);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+
+
+  line-height: 1;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px 20px; 
+  text-align: center;
+  flex-wrap: nowrap;
+}
+
+.nav-links a {
+  color: #1E3A8A;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 6px 12px;
+  white-space: nowrap; 
+  border-radius: 40px;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a i {
+  color: #5555FF;
+  font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+  background: white;
+  border-color: #5555FF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(85, 85, 255, 0.2);
+}
+
+@media (max-width: 900px) {
+  .nav-container {
+    flex-direction: column; /* На узких экранах всё-таки в колонку */
+    gap: 10px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-links a {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+}
+    
     .canvas-card {
       max-width: 1100px;
       width: 100%;
+      margin: 0 auto;
       background: rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(14px) saturate(180%);
       -webkit-backdrop-filter: blur(14px) saturate(180%);
@@ -47,6 +136,11 @@
 
     html {
       scroll-behavior: smooth;
+    }
+
+    /* ID для якорей с отступом от фиксированной навигации */
+    #about, #reviews, #benefits, #examples, #pricing, #contacts {
+      scroll-margin-top: 90px;
     }
 
     .hero {
@@ -131,12 +225,12 @@
       border: 3px solid #feb57b;
     }
     .photo-place {
-      width: 180px;        /* сделали шире */
-  height: 280px;       /* сделали выше (прямоугольник) */
-  border-radius: 40px; /* чуть уменьшили скругление */
-  object-fit: cover;   /* чтобы фото красиво вписалось, не растягиваясь */
-  flex-shrink: 0;
-  display: block;
+      width: 180px;
+      height: 280px;
+      border-radius: 40px;
+      object-fit: cover;
+      flex-shrink: 0;
+      display: block;
     }
     .teacher-desc {
       flex: 1;
@@ -157,7 +251,6 @@
       margin-right: 4px;
     }
 
-    /* Отзывы */
     .reviews-section {
       margin: 30px 0 25px;
     }
@@ -221,7 +314,6 @@
       color: #2c1b42;
     }
 
-    /* Блок преимуществ */
     .benefits-section {
       background: rgba(255, 245, 220, 0.8);
       border-radius: 50px;
@@ -243,7 +335,6 @@
       min-width: 40px;
     }
 
-    /* Блоки: примеры уроков + дипломы */
     .trust-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -287,7 +378,6 @@
       border-bottom: 2px solid #5555FF;
     }
 
-    /* Блок "Обо мне" */
     .about-section {
       background: rgba(255, 240, 230, 0.8);
       border-radius: 60px;
@@ -332,7 +422,6 @@
       line-height: 1.5;
       color: #2c1b42;
     }
-    /* Горизонтальная плашка для курсов */
     .courses-banner {
       background: white;
       border-radius: 40px;
@@ -353,7 +442,6 @@
       color: #5555FF;
     }
 
-    /* Блок с ценами */
     .pricing-section {
       margin: 30px 0 30px;
     }
@@ -467,7 +555,6 @@
       color: #5555FF;
     }
 
-    /* Нижняя панель - всё по центру */
     .footer-center {
       display: flex;
       flex-direction: column;
@@ -478,7 +565,7 @@
       scroll-margin-top: 20px;
     }
     #contacts {
-      scroll-margin-top: 30px;
+      scroll-margin-top: 90px;
     }
     .trial-block {
       display: flex;
@@ -570,67 +657,83 @@
     }
 
     @media (max-width: 700px) {
+      body { padding-top: 120px; }
+      .nav-container { gap: 10px; }
+      .nav-container a { font-size: 0.9rem; padding: 6px 12px; }
       .canvas-card { padding: 20px; }
       .name-title h1 { font-size: 2.5rem; }
       .price-badge { font-size: 1.5rem; padding: 12px 15px; white-space: normal; }
       .level-tag { font-size: 1.2rem; }
       .trial-lesson { font-size: 1.5rem; padding: 15px 25px; white-space: normal; }
     }
-  .trial-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-}
+  
+    .trial-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
 
-.form-input {
-  padding: 15px 20px;
-  border: 2px solid #fea7a7;
-  border-radius: 60px;
-  font-size: 1.1rem;
-  background: white;
-  width: 100%;
-}
+    .form-input {
+      padding: 15px 20px;
+      border: 2px solid #fea7a7;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      background: white;
+      width: 100%;
+    }
 
-.form-input:focus {
-  outline: none;
-  border-color: #5555FF;
-}
+    .form-input:focus {
+      outline: none;
+      border-color: #5555FF;
+    }
 
-.trial-lesson {
-  margin-top: 10px;
-  width: 100%;
-}
-.trial-form .trial-lesson {
-    white-space: normal !important;  /* Разрешаем перенос текста */
-    word-wrap: break-word !important; /* Переносим длинные слова */
-    height: auto !important;          /* Автовысота */
-    min-height: 80px;                 /* Минимальная высота как было */
-    padding: 15px 20px !important;    /* Немного уменьшим отступы */
-    line-height: 1.3;                 /* Межстрочный интервал */
-    font-size: 1.5rem;                /* Чуть уменьшим шрифт */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-}
-
-/* Для мобильных устройств */
-@media (max-width: 500px) {
+    .trial-lesson {
+      margin-top: 10px;
+      width: 100%;
+    }
     .trial-form .trial-lesson {
+      white-space: normal !important;
+      word-wrap: break-word !important;
+      height: auto !important;
+      min-height: 80px;
+      padding: 15px 20px !important;
+      line-height: 1.3;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    @media (max-width: 500px) {
+      .trial-form .trial-lesson {
         font-size: 1.2rem;
         padding: 12px 15px;
         min-height: 70px;
+      }
     }
-}
   </style>
 </head>
 <body>
+  <!-- ФИКСИРОВАННОЕ МЕНЮ (ВСЕГДА НАВЕРХУ) -->
+<div class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">София Телеш</div>
+    <div class="nav-links">
+      <a href="#about"> Обо мне</a>
+      <a href="#reviews"> Отзывы</a>
+      <a href="#benefits"> Преимущества</a>
+      <a href="#examples"> Примеры</a>
+      <a href="#pricing"> Цены</a>
+      <a href="#contacts"> Контакты</a>
+    </div>
+  </div>
+</div>
   <div class="canvas-card">
-    <!-- Верх: имя и бесплатный урок -->
     <div class="hero">
       <div class="name-title">
         <h1>София Телеш</h1>
@@ -643,14 +746,12 @@
       </div>
     </div>
 
-    <!-- Планка с форматом и возрастами -->
     <div class="level-tag">
       <i class="fas fa-globe"></i>  
       <span>ОНЛАЙН. Для детей от 3 класса и старше</span>
       <span class="level-badge">🇬🇧 A0 → B2</span>
     </div>
 
-    <!-- 1) Фото с информацией -->
     <div class="photo-block">
       <img src="photo.jpg" alt="София Телеш, репетитор английского" class="photo-place">
       <div class="teacher-desc">
@@ -658,8 +759,8 @@
       </div>
     </div>
 
-    <!-- 2) Отзывы -->
-    <div class="reviews-section">
+    <!-- СЕКЦИЯ С ЯКОРЕМ "reviews" -->
+    <div id="reviews" class="reviews-section">
       <div class="reviews-title">
         <i class="fas fa-comment-dots"></i> Родители и дети о занятиях
       </div>
@@ -689,12 +790,12 @@
           <span class="review-author">Екатерина, мама Вари (11 лет)</span>
           <span class="review-text">«Вернулся интерес к изучению языка, дочка стала более уверенной в школе и в итоге учебный год закончила на пятерку.»</span>
         </div>
-		<div class="review-card">
+		    <div class="review-card">
           <i class="fas fa-quote-right"></i>
           <span class="review-author">Ярик (12 лет)</span>
           <span class="review-text">«За пересказ 5! Спасибо большое!»</span>
         </div>
-		<div class="review-card">
+		    <div class="review-card">
           <i class="fas fa-quote-right"></i>
           <span class="review-author">Саша (13 лет)</span>
           <span class="review-text">«Я получила 4 за проверочную работу. Ура! Я очень рада.»</span>
@@ -702,15 +803,15 @@
       </div>
     </div>
 
-    <!-- 3) Блок про улучшить оценки, позитив и поддержку -->
-    <div class="benefits-section">
+    <!-- СЕКЦИЯ С ЯКОРЕМ "benefits" -->
+    <div id="benefits" class="benefits-section">
       <p><i class="fas fa-star"></i> улучшить оценки, разобраться со сложной темой, поддержать интерес к языку или расширить школьные знания: индивидуальный маршрут под Ваш запрос</p>
       <p><i class="fas fa-smile"></i> позитив и поддержка от преподавателя на занятии: английский без слёз и капризов</p>
       <p><i class="fas fa-school"></i> могу проводить занятия дополнительно к школьным или полностью вести учебный год для семейного обучения</p>
     </div>
 
-    <!-- 4) Примеры уроков, дипломы и сертификаты -->
-    <div class="trust-grid">
+    <!-- СЕКЦИЯ С ЯКОРЕМ "examples" -->
+    <div id="examples" class="trust-grid">
       <div class="trust-item">
         <i class="fas fa-video"></i>
         <h3>Примеры уроков</h3>
@@ -723,8 +824,8 @@
       </div>
     </div>
 
-    <!-- 5) Блок "Почему я" -->
-    <div class="about-section">
+    <!-- СЕКЦИЯ С ЯКОРЕМ "about" -->
+    <div id="about" class="about-section">
       <div class="about-title">
         <i class="fas fa-star"></i> Почему я? Обо мне
       </div>
@@ -746,20 +847,18 @@
           <p>Самостоятельно создаю интерактивные задания и игры для учеников</p>
         </div>
       </div>
-      <!-- Горизонтальная плашка для курсов -->
       <div class="courses-banner">
         <i class="fas fa-certificate"></i>
         <span>Регулярно прохожу курсы и обучения для повышения квалификации</span>
       </div>
     </div>
 
-    <!-- 6) Стоимость занятий -->
-    <div class="pricing-section">
+    <!-- СЕКЦИЯ С ЯКОРЕМ "pricing" -->
+    <div id="pricing" class="pricing-section">
       <div class="pricing-title">
         <i class="fas fa-ruble-sign"></i> Стоимость занятий
       </div>
       <div class="pricing-grid">
-        <!-- 60 минут -->
         <div class="pricing-card">
           <h4>Онлайн индивидуально</h4>
           <div class="duration">60 минут</div>
@@ -770,7 +869,6 @@
             <li><i class="fas fa-check"></i> оптимальный формат</li>
           </ul>
         </div>
-        <!-- 45 минут -->
         <div class="pricing-card">
           <h4>Онлайн индивидуально</h4>
           <div class="duration">45 минут</div>
@@ -781,7 +879,6 @@
             <li><i class="fas fa-check"></i> успеваем учиться и играть</li>
           </ul>
         </div>
-        <!-- 30 минут -->
         <div class="pricing-card">
           <h4>Онлайн индивидуально</h4>
           <div class="duration">30 минут</div>
@@ -795,68 +892,35 @@
       </div>
     </div>
 
-    <!-- Соцсети по центру (Telegram и MAX поменяны местами, ВК ведёт на vk.com/sophtel) -->
-    <div class="contact-row">
-      <div class="social-links">
-        <a href="https://vk.com/sophtel" target="_blank"><i class="fab fa-vk"></i> ВКонтакте</a>
-        <a href="#contacts" id="max-link"><i class="fab fa-whatsapp"></i> MAX</a>
-		<a href="#contacts" id="telegram-link"><i class="fab fa-telegram"></i> Telegram</a>
-      </div>
-    </div>
-
-    <!-- Нижняя панель: кнопка и чекбокс по центру, контакты (с якорем) -->
-    <div id="contacts" class="footer-center">
-      <div class="trial-block">
-  <form action="https://formspree.io/f/xqednvbg" method="POST" class="trial-form">
-    
-    <input type="text" name="Имя" placeholder="Ваше имя" required class="form-input">
-    <input type="tel" name="Телефон" placeholder="Ваш телефон" required class="form-input">
-    <select name="Длительность" class="form-input">
-      <option value="60 минут">60 минут</option>
-      <option value="45 минут">45 минут</option>
-      <option value="30 минут">30 минут</option>
-    </select>
-    
-    <label class="checkbox-container">
-      <input type="checkbox" id="privacyCheck" required>
-      <span>согласен с <a href="#" onclick="alert('Политика конфиденциальности: мы не передаём данные третьим лицам.'); return false;">политикой конфиденциальности</a> и <a href="#" onclick="alert('Согласие на обработку персональных данных: ваше имя и телефон используются только для связи.'); return false;">обработкой персональных данных</a></span>
-    </label>
-    
-    <button type="submit" class="trial-lesson" id="trialButton">
-      🎯 записаться на пробный урок
-    </button>
-  </form>
-</div>
-    </div>
+    <div id="contacts" class="contact-row">
+<div class="social-links">
+    <!-- Телефон - при клике на мобильном предложит позвонить -->
+  <a href="tel:+79117787834" style="background: #fff0e0; border-color: #5555FF; box-shadow: 0 5px 0 #2A2A7F;">
+    <i class="fas fa-phone-alt" style="color: #5555FF;"></i> +7 911 778 78 34
+  </a>
+  
+  <!-- ВКонтакте -->
+  <a href="https://vk.com/sophtel" target="_blank">
+    <i class="fab fa-vk"></i> ВКонтакте
+  </a>
+  
+  <!-- WhatsApp (MAX) - ссылка ведёт сразу в чат -->
+  <a href="https://max.ru/u/f9LHodD0cOI68Dz4tDxVKr3bn2xg7luakdQz7p-Egsj7Mo-C_FgvG5F6Yqk" target="_blank">
+    <i class="fab fa-whatsapp"></i> MAX
+  </a>
+  
+  <!-- Telegram - ссылка ведёт сразу в чат по номеру -->
+  <a href="https://t.me/Sophtel123" target="_blank">
+    </i> Telegram
+  </a>
   </div>
+   
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const checkbox = document.getElementById('privacyCheck');
-      const button = document.getElementById('trialButton');
-
-      function updateButtonState() {
-        if (checkbox.checked) {
-          button.classList.add('active');
-        } else {
-          button.classList.remove('active');
-        }
-      }
-
-      checkbox.addEventListener('change', updateButtonState);
-      updateButtonState();
-      
-      // Плавная прокрутка к контактам для Telegram и MAX
-      document.getElementById('telegram-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });
-      });
-      
-      document.getElementById('max-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  </script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Плавный скролл к контактам теперь работает через стандартные якоря
+    // Скрипт формы удалён, так как форма больше не нужна
+  });
+</script>
 </body>
 </html>

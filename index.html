@@ -131,17 +131,14 @@
       border: 3px solid #feb57b;
     }
     .photo-place {
-      width: 170px;
-      height: 170px;
-      border-radius: 60px;
-      background: linear-gradient(145deg, #fcb69b, #c36fa6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      border: 6px solid white;
-      box-shadow: 0 15px 0 #b15f7f;
-      flex-shrink: 0;
+      width: 180px;        /* сделали шире */
+  height: 280px;       /* сделали выше (прямоугольник) */
+  border-radius: 40px; /* чуть уменьшили скругление */
+  object-fit: cover;   /* чтобы фото красиво вписалось, не растягиваясь */
+  border: 6px solid white;
+  box-shadow: 0 15px 0 #b15f7f;
+  flex-shrink: 0;
+  display: block;
     }
     .teacher-desc {
       flex: 1;
@@ -657,9 +654,7 @@
 
     <!-- 1) Фото с информацией -->
     <div class="photo-block">
-      <div class="photo-place">
-        🧸
-      </div>
+      <img src="photo.jpg" alt="София Телеш, репетитор английского" class="photo-place">
       <div class="teacher-desc">
         <span class="flag-icon">🇬🇧</span> Английский для вашего школьника: будет понятно и интересно. Разберёмся через то, что близко ученику — от динозавров до ютуберов! На уроках обсуждаем мультики, игры и всё то, что интересно Вашему ребёнку. <br><b>Первое занятие бесплатно: знакомство и тест уровня.</b>
       </div>
